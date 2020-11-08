@@ -60,11 +60,12 @@ class AverageMeter(object):
         self.avg = self.sum / self.count if self.count != 0 else 0
 
 
-def psnr(img1: torch.Tensor, img2: torch.Tensor):
+def psnr(img1: torch.Tensor, img2: torch.Tensor, to_ycbcr=True):
     """Peak Signal to Noise Ratio
     img1 and img2 have range [0, 255]"""
-    img1 = rgb_to_ycbcr(img1)
-    img2 = rgb_to_ycbcr(img2)
+    if to_ycbcr:
+        img1 = rgb_to_ycbcr(img1)
+        img2 = rgb_to_ycbcr(img2)
     mse = torch.mean((img1[...,0, :, :] - img2[..., 0, :, :]) ** 2)
     return 20 * torch.log10(255.0 / torch.sqrt(mse))
 

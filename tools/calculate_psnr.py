@@ -9,19 +9,22 @@ import torch.nn.functional as F
 
 import _init_path
 import datasets
-from utils import AverageMeter, create_logger
+from utils import AverageMeter, create_logger, setup_seed
 from apis import psnr
 
 
 def parser_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('config', help='train config file')
+    parser.add_argument('--seed', type=int, help="random seed")
 
     return parser.parse_args()
 
 
 def main():
     args = parser_args()
+    if args.seed != None:
+        setup_seed(args.seed)
 
     config = Config.fromfile(args.config)
     logger = create_logger()

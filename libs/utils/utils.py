@@ -2,10 +2,15 @@
 # All rights reserved.
 # Licensed under the MIT License.
 
+import torch
+import numpy as np
+import random
 from torch.optim.lr_scheduler import MultiStepLR, StepLR
+
 
 class AverageMeter(object):
     """Computes and stores the average and current value"""
+
     def __init__(self):
         self.val = 0
         self.avg = 0
@@ -32,6 +37,20 @@ def build_lr_scheduler(lr_config, optimizer):
     elif lr_config.policy == 'step':
         scheduler = StepLR(optimizer, step_size=200)
     else:
-        raise NotImplementedError('Lr scheduler {} not found'.format(lr_config.policy))
+        raise NotImplementedError(
+            'Lr scheduler {} not found'.format(lr_config.policy))
 
     return scheduler
+
+
+def setup_seed(seed: int):
+    """Setup random seed
+
+    Args:
+        seed (int): random seed
+    """
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    np.random.seed(seed)
+    random.seed(seed)
+    torch.backends.cudnn.deterministic = True
