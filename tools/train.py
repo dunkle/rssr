@@ -2,33 +2,36 @@
 # All rights reserved.
 # Licensed under the MIT License.
 
+import _init_path
 import os.path as osp
 import time
-
 import argparse
 import torch
+
 import mmcv
 from mmcv import Config
 from torch.utils.data import DataLoader
 
-import _init_path
-
 import models
 import datasets
 from apis.train import train_model
-from utils.logger import create_logger
+from utils import create_logger, setup_seed
 
 
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('config', help='train config file')
     parser.add_argument('--work_dir', help='save model and logfile')
+    parser.add_argument('--seed', type=int, help='random seed')
 
     return parser.parse_args()
 
 
 def main():
     args = parse_args()
+    if args.seed != None:
+        setup_seed(args.seed)
+
     configs = Config.fromfile(args.config)
     if args.work_dir is not None:
         configs.work_dir = args.work_dir

@@ -67,6 +67,5 @@ def valid(configs, model, valid_loader):
 
         msg = 'PSNR: {psnr.val:.3f}({psnr.avg:.3f})'.format(psnr=psnr_meter)
         logger.info(msg)
-        print(msg)
     perf_indicator['psnr'] = psnr_meter.avg
     return perf_indicator
