@@ -23,6 +23,12 @@ data = dict(
         img_prefix=data_root,
         hr_dir='DIV2K_valid_HR',
         lr_dir='DIV2K_valid_LR'
+    ),
+    test=dict(
+        type=data_type,
+        img_prefix=data_root,
+        hr_dir='DIV2K_valid_HR',
+        lr_dir='DIV2K_valid_LR'
     )
 )
 

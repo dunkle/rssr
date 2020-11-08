@@ -23,6 +23,12 @@ data = dict(
         img_prefix=data_root + 'SRValid',
         lr_dir='valid_LR',
         hr_dir='valid_HR'
+    ),
+    test=dict(
+        type=data_type,
+        img_prefix=data_root + 'SRValid',
+        lr_dir='valid_LR',
+        hr_dir='valid_HR'
     )
 )
 

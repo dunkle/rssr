@@ -18,6 +18,7 @@ class MunichDataset(CustomDataset):
     """
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        print(len(self.images))
 
 
 def build_dataset(config, is_training=True):
