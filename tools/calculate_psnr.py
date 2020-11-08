@@ -30,7 +30,7 @@ def main():
     logger = create_logger()
 
     dataset_config = config.data
-    dataset = eval('datasets.{}.build_dataset'.format(dataset_config.test.type)) \
+    dataset = eval('datasets.{}.build_dataset'.format(dataset_config.valid.type)) \
         (dataset_config, is_training=False)
     loader = DataLoader(dataset, batch_size=1,
                         shuffle=True, num_workers=dataset_config.num_workers)

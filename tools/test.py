@@ -41,6 +41,8 @@ def main():
 
     assert osp.exists(args.model), "Model {} not exists".format(args.model)
 
+    logger = create_logger()
+    logger.info(configs.text)
 
     dataset_config = configs.data 
     test_dataset = eval('datasets.{}.build_dataset'.format(dataset_config.test.type))(dataset_config, is_training=False)

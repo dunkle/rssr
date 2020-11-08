@@ -39,4 +39,5 @@ def train_model(configs, model, train_loader, valid_loader):
         if best < perf_indicator['psnr']:
             logger.info("=>Save best model to {}".format(best_model_path))
             torch.save(model.state_dict(), best_model_path)
+            best = perf_indicator['psnr']
         scheduler.step()

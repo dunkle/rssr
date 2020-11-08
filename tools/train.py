@@ -21,7 +21,7 @@ from utils import create_logger, setup_seed
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('config', help='train config file')
-    parser.add_argument('--work_dir', help='save model and logfile')
+    parser.add_argument('--work_dir', type=str, help='save model and logfile')
     parser.add_argument('--seed', type=int, help='random seed')
 
     return parser.parse_args()
@@ -33,7 +33,7 @@ def main():
         setup_seed(args.seed)
 
     configs = Config.fromfile(args.config)
-    if args.work_dir is not None:
+    if args.work_dir != None:
         configs.work_dir = args.work_dir
 
     mmcv.mkdir_or_exist(configs.work_dir)

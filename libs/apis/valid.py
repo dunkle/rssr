@@ -16,6 +16,6 @@ from .function import valid
 
 
 def valid_model(configs, model, test_loader):
-    valid(configs, model, test_loader) 
+    perf_indicator = valid(configs, model, test_loader) 
 
     
